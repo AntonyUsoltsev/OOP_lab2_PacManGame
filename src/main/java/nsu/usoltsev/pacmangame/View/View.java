@@ -14,8 +14,8 @@ import java.nio.file.attribute.GroupPrincipal;
 public class View {
     static Image icon;
     private Scene scene;
-
     private Group root;
+    private Stage stage;
 
     public View() {
         File iconFile = new File("./src/main/resources/pictures/PacmanRight.png");
@@ -30,19 +30,20 @@ public class View {
         return root;
     }
 
-    private Line createBorder(int startX, int startY, int endX, int endY, int widht, Color color ){
-        Line border = new Line(startX,startY,endX,endY);
+    private Line createBorder(int startX, int startY, int endX, int endY, int widht, Color color) {
+        Line border = new Line(startX, startY, endX, endY);
         border.setStroke(color);
         border.setStrokeWidth(widht);
         return border;
     }
-    private void drawBorders(Group root){
-        root.getChildren().add(createBorder(0,0,0,200,30, Color.RED));
-        root.getChildren().add(createBorder(0,0,600,0,30, Color.RED));
-        root.getChildren().add(createBorder(600,0,600,200,30, Color.RED));
-        root.getChildren().add(createBorder(600,400,600,600,30, Color.RED));
-        root.getChildren().add(createBorder(0,600,600,600,30, Color.RED));
-        root.getChildren().add(createBorder(0,400,0,600,30, Color.RED));
+
+    private void drawBorders(Group root) {
+        root.getChildren().add(createBorder(0, 0, 0, 200, 30, Color.RED));
+        root.getChildren().add(createBorder(0, 0, 600, 0, 30, Color.RED));
+        root.getChildren().add(createBorder(600, 0, 600, 200, 30, Color.RED));
+        root.getChildren().add(createBorder(600, 400, 600, 600, 30, Color.RED));
+        root.getChildren().add(createBorder(0, 600, 600, 600, 30, Color.RED));
+        root.getChildren().add(createBorder(0, 400, 0, 600, 30, Color.RED));
     }
 
     public void viewField(Stage stage) {
@@ -51,7 +52,6 @@ public class View {
         scene = new Scene(root, 600, 600);
         scene.setFill(Color.rgb(14, 0, 31));
         stage.setTitle("Pac Man");
-
         drawBorders(root);
 
 
@@ -69,4 +69,5 @@ public class View {
         // stage.setResizable(false);
 
     }
+
 }

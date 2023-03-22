@@ -36,13 +36,13 @@ public class PacMan {
     }
     void viewPacman(Stage stage,Scene scene, Group root) {
      //   stage.getIcons().add(imageRight);
-        ImageView pacMan = new ImageView();
-        pacMan.setFitWidth(imageRight.getWidth() * 0.05);
-        pacMan.setFitHeight(imageRight.getHeight() * 0.05);
-        pacMan.setX(250);
-        pacMan.setY(250);
-        pacMan.setImage(imageRight);
-        root.getChildren().add(pacMan);
+//        ImageView pacMan = new ImageView();
+//        pacMan.setFitWidth(imageRight.getWidth() * 0.05);
+//        pacMan.setFitHeight(imageRight.getHeight() * 0.05);
+//        pacMan.setX(250);
+//        pacMan.setY(250);
+//        pacMan.setImage(imageRight);
+//        root.getChildren().add(pacMan);
 //        Scene scene = new Scene(root, 600, 600);
 //
 //        scene.setFill(Color.rgb(14, 0, 31));
@@ -80,87 +80,32 @@ public class PacMan {
 //        border6.setStroke(Color.LIGHTBLUE);
 //        border6.setStrokeWidth(30);
 //        root.getChildren().add(border6);
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
 
-                if (event.getCode() == KeyCode.RIGHT) {
-                    pacMan.setFitWidth(imageRight.getWidth() * 0.05);
-                    pacMan.setFitHeight(imageRight.getHeight() * 0.05);
-                    pacMan.setImage(imageRight);
-                   // pacMan.setX(pacMan.getX() + 10);
-                    xVelocity = 2;
-                    yVelocity = 0;
-                  //  pacMan.setX( pacMan.getX() != 560 ? pacMan.getX() + 10 : -20);
-                    System.out.println(pacMan.getX());
-                } else if (event.getCode() == KeyCode.LEFT) {
-                    pacMan.setFitWidth(imageLeft.getWidth() * 0.05);
-                    pacMan.setFitHeight(imageLeft.getHeight() * 0.05);
-                    pacMan.setImage(imageLeft);
-                    xVelocity = -2;
-                    yVelocity=0;
-                 //   pacMan.setX( pacMan.getX() != -20 ? pacMan.getX() - 10 : 560);
-                    System.out.println(pacMan.getX());
-                } else if (event.getCode() == KeyCode.UP) {
-                    pacMan.setFitWidth(imageUp.getWidth() * 0.05);
-                    pacMan.setFitHeight(imageUp.getHeight() * 0.05);
-                    pacMan.setImage(imageUp);
-                    yVelocity = -2;
-                    xVelocity=0;
-                   // pacMan.setY(pacMan.getY() - 10);
-                 //    pacMan.setY( pacMan.getY() != -20 ? pacMan.getY() - 10 : 560);
-                    System.out.println(pacMan.getY());
-                } else if (event.getCode() == KeyCode.DOWN) {
-                    pacMan.setFitWidth(imageDown.getWidth() * 0.05);
-                    pacMan.setFitHeight(imageDown.getHeight() * 0.05);
-                    pacMan.setImage(imageDown);
-                    yVelocity = 2;
-                    xVelocity = 0;
-                    //pacMan.setY(pacMan.getY() + 10);
-                  //  pacMan.setY( pacMan.getY() != 560 ? pacMan.getY() + 10 : -20);
-                    System.out.println(pacMan.getY());
-
-                }
-                else if (event.getCode() == KeyCode.SPACE) {
-//                    pacMan.setFitWidth(imageDown.getWidth() * 0.05);
-//                    pacMan.setFitHeight(imageDown.getHeight() * 0.05);
-                   // pacMan.setImage(imageDown);
-                    yVelocity = 0;
-                    xVelocity = 0;
-                    //pacMan.setY(pacMan.getY() + 10);
-                    //  pacMan.setY( pacMan.getY() != 560 ? pacMan.getY() + 10 : -20);
-                    System.out.println(pacMan.getY());
-                    System.out.println(pacMan.getX());
-
-                }
-
-            }
-        });
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-
-                if(pacMan.getX() == 560 ){
-                    pacMan.setX(-20);
-                }
-                else if(pacMan.getX() < 10 && pacMan.getY()>10 && pacMan.getY()<200 && xVelocity<0){
-                    xVelocity = 0;
-                   // pacMan.setX(560);
-                }
-
-
-                if(pacMan.getY() == 560){
-                    pacMan.setY(-20);
-                }
-                else if(pacMan.getY() == -20){
-                    pacMan.setY(560);
-                }
-                pacMan.setX(  pacMan.getX() + xVelocity );
-                pacMan.setY(  pacMan.getY() + yVelocity );
-
-            }
-        };
-        timer.start();
+//        AnimationTimer timer = new AnimationTimer() {
+//            @Override
+//            public void handle(long now) {
+//
+//                if(pacMan.getX() == 560 ){
+//                    pacMan.setX(-20);
+//                }
+//                else if(pacMan.getX() < 10 && pacMan.getY()>10 && pacMan.getY()<200 && xVelocity<0){
+//                    xVelocity = 0;
+//                   // pacMan.setX(560);
+//                }
+//
+//
+//                if(pacMan.getY() == 560){
+//                    pacMan.setY(-20);
+//                }
+//                else if(pacMan.getY() == -20){
+//                    pacMan.setY(560);
+//                }
+//                pacMan.setX(  pacMan.getX() + xVelocity );
+//                pacMan.setY(  pacMan.getY() + yVelocity );
+//
+//            }
+//        };
+//        timer.start();
 
         stage.setScene(scene);
 

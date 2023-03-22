@@ -3,6 +3,7 @@ package nsu.usoltsev.pacmangame;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import nsu.usoltsev.pacmangame.Control.PacManController;
 import nsu.usoltsev.pacmangame.View.View;
 
 import java.io.IOException;
@@ -21,9 +22,9 @@ public class Main extends javafx.application.Application {
         view.viewField(stage);
         Scene scene = view.getScene();
         Group root = view.getRoot();
-        PacMan pacMan = new PacMan();
-        pacMan.viewPacman(stage,scene,root);
-
+        PacManController pacManController = new PacManController(root);
+        pacManController.control(scene);
+        stage.setScene(scene);
+        stage.show();
     }
-
 }
