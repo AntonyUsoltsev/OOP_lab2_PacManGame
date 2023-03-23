@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import nsu.usoltsev.pacmangame.Control.PacManController;
+import nsu.usoltsev.pacmangame.Model.DotModel;
 import nsu.usoltsev.pacmangame.Model.FieldModel;
 import nsu.usoltsev.pacmangame.View.WindowView;
 
@@ -23,6 +24,8 @@ public class Main extends javafx.application.Application {
 
         FieldModel fieldModel = new FieldModel();
         fieldModel.viewField(root);
+
+        DotModel dotModel = new DotModel();
 
         PacManController pacManController = new PacManController(root);
         pacManController.control(scene);

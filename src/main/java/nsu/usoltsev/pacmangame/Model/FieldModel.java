@@ -15,6 +15,6 @@ public class FieldModel {
     }
 
     public void viewField(Group root) {
-        fieldView.drawBorders(root,Matrix.matrix);
+        fieldView.drawBorders(root, Matrix.matrix);
     }
 }

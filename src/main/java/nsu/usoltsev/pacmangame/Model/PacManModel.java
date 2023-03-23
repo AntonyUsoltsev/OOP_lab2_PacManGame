@@ -10,6 +10,23 @@ public class PacManModel {
     private int xPosition;
     private int yPosition;
     private String direction;
+
+    private int xVelocityChange;
+    private int yVelocityChange;
+
+    public void setxVelocityChange(int xVelocityChange) {
+        this.xVelocityChange = xVelocityChange;
+    }
+
+    public void setyVelocityChange(int yVelocityChange) {
+        this.yVelocityChange = yVelocityChange;
+    }
+
+    public void setKeyPressed(String keyPressed) {
+        this.keyPressed = keyPressed;
+    }
+
+    private String keyPressed;
     private final PacManView pacManView;
 
     public String getDirection() {
@@ -58,75 +75,82 @@ public class PacManModel {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.direction = direction;
+
+        this.xVelocityChange = 0;
+        this.yVelocityChange = 0;
+        this.keyPressed = "RIGHT";
         pacManView = new PacManView(root);
     }
 
     public void movement() {
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-//                if (xPosition <= 14 && yPosition >= 0 && yPosition < 220 && xVelocity < 0) {
-//                    xVelocity = 0;
-//                } else if (xPosition == -20 && yPosition >= 220 && yPosition < 320) {
-//                    xPosition = 560;
-//                } else if (xPosition <= 14 && yPosition >= 320 && yPosition < 600 && xVelocity < 0) {
-//                    xVelocity = 0;
-//                } else if (xPosition >= 516 && yPosition >= 0 && yPosition < 220 && xVelocity > 0) {
-//                    xVelocity = 0;
-//                } else if (xPosition == 560 && yPosition >= 220 && yPosition < 320) {
-//                    xPosition= -20;
-//                } else if (xPosition >= 516 && yPosition >= 320 && yPosition < 600 && xVelocity > 0) {
-//                    xVelocity = 0;
-//                }
-//
-//                if (yPosition >= 516 && xPosition >= 0 && xPosition < 600 && yVelocity>0) {
-//                    yVelocity = 0;
-//                } else if (yPosition <= 14 && xPosition >= 0 && xPosition < 600 && yVelocity<0) {
-//                    yVelocity = 0;
-//                }
 
-                switch (direction) {
+                switch (keyPressed) {
                     case ("RIGHT") -> {
+                        if (yPosition % Matrix.CELL_SIZE == 0) {
+                            xVelocity = xVelocityChange;
+                            yVelocity = yVelocityChange;
+                            direction = keyPressed;
+                        }
                         if (yPosition % Matrix.CELL_SIZE == 0 && xPosition % Matrix.CELL_SIZE == 0) {
                             if (Matrix.matrix[xPosition / Matrix.CELL_SIZE + 1][yPosition / Matrix.CELL_SIZE] == 1) {
                                 xVelocity = 0;
-                                System.out.println(xPosition + " " + yPosition);
                             }
                         }
                     }
                     case ("LEFT") -> {
+                        if (yPosition % Matrix.CELL_SIZE == 0) {
+                            xVelocity = xVelocityChange;
+                            yVelocity = yVelocityChange;
+                            direction = keyPressed;
+                        }
                         if (yPosition % Matrix.CELL_SIZE == 0 && xPosition % Matrix.CELL_SIZE == 0) {
-                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE -1 ][yPosition / Matrix.CELL_SIZE] == 1) {
+                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE - 1][yPosition / Matrix.CELL_SIZE] == 1) {
                                 xVelocity = 0;
-                                System.out.println(xPosition + " " + yPosition);
                             }
                         }
 
                     }
                     case ("UP") -> {
+                        if (xPosition % Matrix.CELL_SIZE == 0) {
+                            xVelocity = xVelocityChange;
+                            yVelocity = yVelocityChange;
+                            direction = keyPressed;
+                        }
                         if (xPosition % Matrix.CELL_SIZE == 0 && yPosition % Matrix.CELL_SIZE == 0) {
-                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE -1 ] == 1) {
+                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE - 1] == 1) {
                                 yVelocity = 0;
-                                System.out.println(xPosition + " " + yPosition);
+                            }
+                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE] == 2) {
+                                Matrix.deleteDot(xPosition / Matrix.CELL_SIZE,yPosition / Matrix.CELL_SIZE);
+                                System.out.println("DOT");
                             }
                         }
                     }
                     case ("DOWN") -> {
+                        if (xPosition % Matrix.CELL_SIZE == 0) {
+                            xVelocity = xVelocityChange;
+                            yVelocity = yVelocityChange;
+                            direction = keyPressed;
+                        }
                         if (xPosition % Matrix.CELL_SIZE == 0 && yPosition % Matrix.CELL_SIZE == 0) {
                             if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE + 1] == 1) {
                                 yVelocity = 0;
-                                System.out.println(xPosition + " " + yPosition);
                             }
+
                         }
                     }
                 }
-
 
                 xPosition += xVelocity;
                 yPosition += yVelocity;
                 pacManView.viewPacMan(xPosition, yPosition, direction);
             }
         };
+
         timer.start();
 
     }

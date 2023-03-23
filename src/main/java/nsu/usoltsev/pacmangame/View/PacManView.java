@@ -75,8 +75,8 @@ public class PacManView {
                 setImage(imageDown, imageDownClosed);
             }
         }
-        pacMan.setFitWidth(30);
-        pacMan.setFitHeight(30);
+        pacMan.setFitWidth(Matrix.CELL_SIZE);
+        pacMan.setFitHeight(Matrix.CELL_SIZE);
         pacMan.setX(xPosition);
         pacMan.setY(yPosition);
     }
