@@ -4,17 +4,14 @@ import javafx.scene.Group;
 import nsu.usoltsev.pacmangame.View.FieldView;
 
 public class FieldModel {
-    FieldView fieldView;
+    static FieldView fieldView;
 
-
-    //Coord of borders?
-
-    public FieldModel() {
+    static {
         fieldView = new FieldView();
-
+        Matrix.setMatrix();
     }
 
-    public void viewField(Group root) {
+    public static void viewField(Group root) {
         fieldView.drawBorders(root, Matrix.matrix);
     }
 }

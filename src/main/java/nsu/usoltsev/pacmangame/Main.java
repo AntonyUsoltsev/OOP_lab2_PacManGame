@@ -22,10 +22,9 @@ public class Main extends javafx.application.Application {
 
         WindowView.setWindowOptions(stage,scene);
 
-        FieldModel fieldModel = new FieldModel();
-        fieldModel.viewField(root);
+        FieldModel.viewField(root);
 
-        DotModel dotModel = new DotModel();
+        DotModel.setDots(root);
 
         PacManController pacManController = new PacManController(root);
         pacManController.control(scene);

@@ -11,13 +11,14 @@ public class PacManController {
     PacManModel pacManModel;
 
     public PacManController(Group root) {
-        pacManModel = new PacManModel(0, 0, 270, 270, "RIGHT", root);
+        pacManModel = new PacManModel(0, 0, Matrix.CELL_SIZE * Matrix.CELL_X_COUNT / 2, Matrix.CELL_SIZE * (Matrix.CELL_Y_COUNT / 2 + 1), "RIGHT", root);
     }
 
     public void control(Scene scene) {
 
 
         scene.setOnKeyPressed(event -> {
+
 
             if (event.getCode() == KeyCode.RIGHT) {
                 pacManModel.setKeyPressed("RIGHT");

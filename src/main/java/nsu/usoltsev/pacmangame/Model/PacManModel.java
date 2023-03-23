@@ -95,9 +95,13 @@ public class PacManModel {
                             yVelocity = yVelocityChange;
                             direction = keyPressed;
                         }
+                       // System.out.println(yPosition+" " +xPosition);
                         if (yPosition % Matrix.CELL_SIZE == 0 && xPosition % Matrix.CELL_SIZE == 0) {
                             if (Matrix.matrix[xPosition / Matrix.CELL_SIZE + 1][yPosition / Matrix.CELL_SIZE] == 1) {
                                 xVelocity = 0;
+                            }
+                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE] == 2) {
+                                DotModel.removeDot(xPosition / Matrix.CELL_SIZE,yPosition / Matrix.CELL_SIZE);
                             }
                         }
                     }
@@ -111,7 +115,11 @@ public class PacManModel {
                             if (Matrix.matrix[xPosition / Matrix.CELL_SIZE - 1][yPosition / Matrix.CELL_SIZE] == 1) {
                                 xVelocity = 0;
                             }
+                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE] == 2) {
+                                DotModel.removeDot(xPosition / Matrix.CELL_SIZE,yPosition / Matrix.CELL_SIZE);
+                            }
                         }
+
 
                     }
                     case ("UP") -> {
@@ -125,8 +133,7 @@ public class PacManModel {
                                 yVelocity = 0;
                             }
                             if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE] == 2) {
-                                Matrix.deleteDot(xPosition / Matrix.CELL_SIZE,yPosition / Matrix.CELL_SIZE);
-                                System.out.println("DOT");
+                                DotModel.removeDot(xPosition / Matrix.CELL_SIZE,yPosition / Matrix.CELL_SIZE);
                             }
                         }
                     }
@@ -139,6 +146,9 @@ public class PacManModel {
                         if (xPosition % Matrix.CELL_SIZE == 0 && yPosition % Matrix.CELL_SIZE == 0) {
                             if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE + 1] == 1) {
                                 yVelocity = 0;
+                            }
+                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE] == 2) {
+                                DotModel.removeDot(xPosition / Matrix.CELL_SIZE,yPosition / Matrix.CELL_SIZE);
                             }
 
                         }
