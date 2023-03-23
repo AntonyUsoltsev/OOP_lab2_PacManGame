@@ -10,7 +10,7 @@ public class PacManModel {
     private int xPosition;
     private int yPosition;
     private String direction;
-    private PacManView pacManView;
+    private final PacManView pacManView;
 
     public String getDirection() {
         return direction;
@@ -65,18 +65,63 @@ public class PacManModel {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (xPosition == 560) {
-                    xPosition = (-20);
-                } else if (xPosition < 10 && yPosition > 10 && yPosition < 200 && xVelocity < 0) {
-                    xVelocity = 0;
-                    // pacMan.setX(560);
+//                if (xPosition <= 14 && yPosition >= 0 && yPosition < 220 && xVelocity < 0) {
+//                    xVelocity = 0;
+//                } else if (xPosition == -20 && yPosition >= 220 && yPosition < 320) {
+//                    xPosition = 560;
+//                } else if (xPosition <= 14 && yPosition >= 320 && yPosition < 600 && xVelocity < 0) {
+//                    xVelocity = 0;
+//                } else if (xPosition >= 516 && yPosition >= 0 && yPosition < 220 && xVelocity > 0) {
+//                    xVelocity = 0;
+//                } else if (xPosition == 560 && yPosition >= 220 && yPosition < 320) {
+//                    xPosition= -20;
+//                } else if (xPosition >= 516 && yPosition >= 320 && yPosition < 600 && xVelocity > 0) {
+//                    xVelocity = 0;
+//                }
+//
+//                if (yPosition >= 516 && xPosition >= 0 && xPosition < 600 && yVelocity>0) {
+//                    yVelocity = 0;
+//                } else if (yPosition <= 14 && xPosition >= 0 && xPosition < 600 && yVelocity<0) {
+//                    yVelocity = 0;
+//                }
+
+                switch (direction) {
+                    case ("RIGHT") -> {
+                        if (yPosition % Matrix.CELL_SIZE == 0 && xPosition % Matrix.CELL_SIZE == 0) {
+                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE + 1][yPosition / Matrix.CELL_SIZE] == 1) {
+                                xVelocity = 0;
+                                System.out.println(xPosition + " " + yPosition);
+                            }
+                        }
+                    }
+                    case ("LEFT") -> {
+                        if (yPosition % Matrix.CELL_SIZE == 0 && xPosition % Matrix.CELL_SIZE == 0) {
+                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE -1 ][yPosition / Matrix.CELL_SIZE] == 1) {
+                                xVelocity = 0;
+                                System.out.println(xPosition + " " + yPosition);
+                            }
+                        }
+
+                    }
+                    case ("UP") -> {
+                        if (xPosition % Matrix.CELL_SIZE == 0 && yPosition % Matrix.CELL_SIZE == 0) {
+                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE -1 ] == 1) {
+                                yVelocity = 0;
+                                System.out.println(xPosition + " " + yPosition);
+                            }
+                        }
+                    }
+                    case ("DOWN") -> {
+                        if (xPosition % Matrix.CELL_SIZE == 0 && yPosition % Matrix.CELL_SIZE == 0) {
+                            if (Matrix.matrix[xPosition / Matrix.CELL_SIZE][yPosition / Matrix.CELL_SIZE + 1] == 1) {
+                                yVelocity = 0;
+                                System.out.println(xPosition + " " + yPosition);
+                            }
+                        }
+                    }
                 }
 
-                if (yPosition == 560) {
-                    yPosition = (-20);
-                } else if (yPosition == -20) {
-                    yPosition = (560);
-                }
+
                 xPosition += xVelocity;
                 yPosition += yVelocity;
                 pacManView.viewPacMan(xPosition, yPosition, direction);
