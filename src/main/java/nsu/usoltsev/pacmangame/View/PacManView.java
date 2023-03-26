@@ -3,6 +3,9 @@ package nsu.usoltsev.pacmangame.View;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import nsu.usoltsev.pacmangame.Model.Matrix;
 
 import java.io.File;
@@ -17,7 +20,7 @@ public class PacManView {
     static Image imageUpClosed;
     static Image imageDownClosed;
     ImageView pacMan;
-
+    Text score;
     boolean isClosed = true;
     int i = 0;
 
@@ -45,6 +48,12 @@ public class PacManView {
 
         pacMan = new ImageView();
         root.getChildren().add(pacMan);
+        score= new Text();
+        score.setX(20);
+        score.setY(20);
+        score.setFill(Color.YELLOW);
+        score.setFont(new Font(20));
+        root.getChildren().add(score);
     }
 
     void setImage(Image image, Image imageClosed) {
@@ -60,7 +69,7 @@ public class PacManView {
         }
     }
 
-    public void viewPacMan(int xPosition, int yPosition, String direction) {
+    public void viewPacMan(int xPosition, int yPosition, String direction, int score) {
         switch (direction) {
             case "RIGHT" -> {
                 setImage(imageRight, imageRightClosed);
@@ -79,5 +88,6 @@ public class PacManView {
         pacMan.setFitHeight(Matrix.CELL_SIZE);
         pacMan.setX(xPosition);
         pacMan.setY(yPosition);
+        this.score.setText(Integer.toString(score));
     }
 }

@@ -3,9 +3,10 @@ package nsu.usoltsev.pacmangame.Model;
 import nsu.usoltsev.pacmangame.View.FieldView;
 
 public class Matrix {
-    public static final int CELL_SIZE = 26;    //Должно быть четным.
+    public static final int CELL_SIZE = 24;    //Должно быть четным.
     public static final int CELL_X_COUNT = 28; //Должно быть четным.
     public static final int CELL_Y_COUNT = 32; //Должно быть четным.
+    //672*768
     public static int[][] matrix = new int[CELL_X_COUNT][CELL_Y_COUNT];
 
     public static void setMatrix() {

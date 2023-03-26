@@ -5,8 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import nsu.usoltsev.pacmangame.Control.PacManController;
-import nsu.usoltsev.pacmangame.Model.DotModel;
-import nsu.usoltsev.pacmangame.Model.FieldModel;
+import nsu.usoltsev.pacmangame.Model.*;
 import nsu.usoltsev.pacmangame.View.WindowView;
 
 public class Main extends javafx.application.Application {
@@ -27,6 +26,9 @@ public class Main extends javafx.application.Application {
         DotModel.setDots(root);
 
         PacManController pacManController = new PacManController(root);
+
+
+
         pacManController.control(scene);
 
         stage.setScene(scene);
