@@ -11,35 +11,28 @@ import nsu.usoltsev.pacmangame.Model.Matrix;
 import java.io.File;
 
 public class PacManView {
-    static Image imageRight;
-    static Image imageLeft;
-    static Image imageUp;
-    static Image imageDown;
-    static Image imageRightClosed;
-    static Image imageLeftClosed;
-    static Image imageUpClosed;
-    static Image imageDownClosed;
+    static Image imageRight, imageLeft, imageUp, imageDown;
+    static Image imageRightClosed, imageLeftClosed, imageUpClosed, imageDownClosed;
     ImageView pacMan;
-    Text score;
     boolean isClosed = true;
     int i = 0;
 
     public PacManView(Group root) {
 
-        File pacmanRight = new File("./src/main/resources/pictures/PacmanRight.png");
-        File pacmanLeft = new File("./src/main/resources/pictures/PacmanLeft.png");
-        File pacmanUp = new File("./src/main/resources/pictures/PacmanUp.png");
-        File pacmanDown = new File("./src/main/resources/pictures/PacmanDown.png");
+        File pacmanRight = new File("./src/main/resources/pictures/PacManPictures/PacmanRight.png");
+        File pacmanLeft = new File("./src/main/resources/pictures/PacManPictures/PacmanLeft.png");
+        File pacmanUp = new File("./src/main/resources/pictures/PacManPictures/PacmanUp.png");
+        File pacmanDown = new File("./src/main/resources/pictures/PacManPictures/PacmanDown.png");
 
         imageRight = new Image(pacmanRight.toURI().toString());
         imageLeft = new Image(pacmanLeft.toURI().toString());
         imageUp = new Image(pacmanUp.toURI().toString());
         imageDown = new Image(pacmanDown.toURI().toString());
 
-        File pacmanRightClosed = new File("./src/main/resources/pictures/PacmanRightClosed.png");
-        File pacmanLeftClosed = new File("./src/main/resources/pictures/PacmanLeftClosed.png");
-        File pacmanUpClosed = new File("./src/main/resources/pictures/PacmanUpClosed.png");
-        File pacmanDownClosed = new File("./src/main/resources/pictures/PacmanDownClosed.png");
+        File pacmanRightClosed = new File("./src/main/resources/pictures/PacManPictures/PacmanRightClosed.png");
+        File pacmanLeftClosed = new File("./src/main/resources/pictures/PacManPictures/PacmanLeftClosed.png");
+        File pacmanUpClosed = new File("./src/main/resources/pictures/PacManPictures/PacmanUpClosed.png");
+        File pacmanDownClosed = new File("./src/main/resources/pictures/PacManPictures/PacmanDownClosed.png");
 
         imageRightClosed = new Image(pacmanRightClosed.toURI().toString());
         imageLeftClosed = new Image(pacmanLeftClosed.toURI().toString());
@@ -48,12 +41,9 @@ public class PacManView {
 
         pacMan = new ImageView();
         root.getChildren().add(pacMan);
-        score= new Text();
-        score.setX(20);
-        score.setY(20);
-        score.setFill(Color.YELLOW);
-        score.setFont(new Font(20));
-        root.getChildren().add(score);
+        HealthScoreView.setRoot(root);
+        HealthScoreView.setScore();
+        HealthScoreView.setHealth();
     }
 
     void setImage(Image image, Image imageClosed) {
@@ -69,7 +59,7 @@ public class PacManView {
         }
     }
 
-    public void viewPacMan(int xPosition, int yPosition, String direction, int score) {
+    public void  viewPacMan(int xPosition, int yPosition, String direction, int score, int health) {
         switch (direction) {
             case "RIGHT" -> {
                 setImage(imageRight, imageRightClosed);
@@ -88,6 +78,8 @@ public class PacManView {
         pacMan.setFitHeight(Matrix.CELL_SIZE);
         pacMan.setX(xPosition);
         pacMan.setY(yPosition);
-        this.score.setText(Integer.toString(score));
+        HealthScoreView.drawHealth(health);
+        HealthScoreView.scoreText.setText(Integer.toString(score));
+
     }
 }

@@ -8,6 +8,12 @@ import java.util.Random;
 
 public class GhostModel {
     protected GhostView ghostView;
+
+    public AnimationTimer getTimer() {
+        return timer;
+    }
+
+    protected AnimationTimer timer;
     protected int xVelocity;
     protected int yVelocity;
     protected int xPosition;
@@ -42,7 +48,7 @@ public class GhostModel {
 
     public void ghostMovement() {
 
-        AnimationTimer timer = new AnimationTimer() {
+        timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
 

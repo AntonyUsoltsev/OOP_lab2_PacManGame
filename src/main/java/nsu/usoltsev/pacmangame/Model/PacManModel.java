@@ -17,6 +17,7 @@ public class PacManModel {
     private int xVelocityChange;
     private int yVelocityChange;
     private int score;
+    private int health;
     private String keyPressed;
     private final PacManView pacManView;
     private final BlueGhostModel blueGhostModel;
@@ -102,6 +103,7 @@ public class PacManModel {
         pinkGhostModel.ghostMovement();
 
         score = 0;
+        health = 3;
     }
 
     void setChanges(int position) {
@@ -126,6 +128,7 @@ public class PacManModel {
                     xVelocity = 0;
                     yVelocity = 0;
                     keyPressed = "STOP";
+                    health -- ;
                 }
 
                     switch (keyPressed) {
@@ -196,12 +199,21 @@ public class PacManModel {
                         case("STOP")->{
                             xVelocity=0;
                             yVelocity=0;
+                            if(health == 0){
+                                redGhostModel.getTimer().stop();
+                                pinkGhostModel.getTimer().stop();
+                                yellowGhostModel.getTimer().stop();
+                                blueGhostModel.getTimer().stop();
+                                super.stop();
+
+                            }
+                            //super.stop();
                         }
                     }
 
                 xPosition += xVelocity;
                 yPosition += yVelocity;
-                pacManView.viewPacMan(xPosition, yPosition, direction, score);
+                pacManView.viewPacMan(xPosition, yPosition, direction, score, health);
             }
         };
 

@@ -27,8 +27,6 @@ public class Main extends javafx.application.Application {
 
         PacManController pacManController = new PacManController(root);
 
-
-
         pacManController.control(scene);
 
         stage.setScene(scene);
