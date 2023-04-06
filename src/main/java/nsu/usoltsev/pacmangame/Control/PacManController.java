@@ -8,13 +8,13 @@ import nsu.usoltsev.pacmangame.Model.PacManModel;
 
 public class PacManController {
 
-    PacManModel pacManModel;
+    static PacManModel pacManModel;
 
     public PacManController(Group root) {
         pacManModel = new PacManModel(0, 0, Matrix.CELL_SIZE * Matrix.CELL_X_COUNT / 2, Matrix.CELL_SIZE * (Matrix.CELL_Y_COUNT / 2 + 1), "RIGHT", root);
     }
 
-    public void control(Scene scene) {
+    public static void control(Scene scene) {
 
 
         scene.setOnKeyPressed(event -> {
@@ -42,7 +42,7 @@ public class PacManController {
             }
         });
 
-        pacManModel.movement();
+        pacManModel.movement(scene);
 
     }
 

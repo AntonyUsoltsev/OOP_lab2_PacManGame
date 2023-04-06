@@ -158,9 +158,6 @@ public class Matrix {
                 matrix[CELL_X_COUNT - 1 - i][j] = 1;
             }
         }
-
-
-
     }
 
 }

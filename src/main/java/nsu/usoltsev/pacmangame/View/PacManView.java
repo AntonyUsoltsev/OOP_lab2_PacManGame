@@ -19,20 +19,20 @@ public class PacManView {
 
     public PacManView(Group root) {
 
-        File pacmanRight = new File("./src/main/resources/pictures/PacManPictures/PacmanRight.png");
-        File pacmanLeft = new File("./src/main/resources/pictures/PacManPictures/PacmanLeft.png");
-        File pacmanUp = new File("./src/main/resources/pictures/PacManPictures/PacmanUp.png");
-        File pacmanDown = new File("./src/main/resources/pictures/PacManPictures/PacmanDown.png");
+        File pacmanRight = new File("./src/main/resources/pictures/PacManPictures/cat.png");
+        File pacmanLeft = new File("./src/main/resources/pictures/PacManPictures/cat.png");
+        File pacmanUp = new File("./src/main/resources/pictures/PacManPictures/cat.png");
+        File pacmanDown = new File("./src/main/resources/pictures/PacManPictures/cat.png");
 
         imageRight = new Image(pacmanRight.toURI().toString());
         imageLeft = new Image(pacmanLeft.toURI().toString());
         imageUp = new Image(pacmanUp.toURI().toString());
         imageDown = new Image(pacmanDown.toURI().toString());
 
-        File pacmanRightClosed = new File("./src/main/resources/pictures/PacManPictures/PacmanRightClosed.png");
-        File pacmanLeftClosed = new File("./src/main/resources/pictures/PacManPictures/PacmanLeftClosed.png");
-        File pacmanUpClosed = new File("./src/main/resources/pictures/PacManPictures/PacmanUpClosed.png");
-        File pacmanDownClosed = new File("./src/main/resources/pictures/PacManPictures/PacmanDownClosed.png");
+        File pacmanRightClosed = new File("./src/main/resources/pictures/PacManPictures/cat.png");
+        File pacmanLeftClosed = new File("./src/main/resources/pictures/PacManPictures/cat.png");
+        File pacmanUpClosed = new File("./src/main/resources/pictures/PacManPictures/cat.png");
+        File pacmanDownClosed = new File("./src/main/resources/pictures/PacManPictures/cat.png");
 
         imageRightClosed = new Image(pacmanRightClosed.toURI().toString());
         imageLeftClosed = new Image(pacmanLeftClosed.toURI().toString());
