@@ -1,20 +1,47 @@
 package nsu.usoltsev.pacmangame.View;
 
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import nsu.usoltsev.pacmangame.Model.*;
 
 import java.io.File;
 
 public class WindowView {
     public static void setWindowOptions(Stage stage, Scene scene) {
         scene.setFill(Color.rgb(2, 0, 9));
-
         File iconFile = new File("./src/main/resources/pictures/PacManPictures/PacmanRight.png");
         Image icon = new Image(iconFile.toURI().toString());
         stage.getIcons().add(icon);
-
         stage.setTitle("Pac Man");
+    }
+
+    public static void startView(Group root, Button startBtn) {
+
+        File logoFile = new File("./src/main/resources/pictures/PacmanLogo.png");
+        Image logoImage = new Image(logoFile.toURI().toString());
+        ImageView logoView = new ImageView(logoImage);
+        double aspectRatio = logoImage.getWidth() / logoImage.getHeight();
+        logoView.setFitHeight(600 / aspectRatio);
+        logoView.setFitWidth(600);
+        logoView.setX(25);
+        logoView.setY(25);
+        root.getChildren().add(logoView);
+
+        File imageFile = new File("./src/main/resources/pictures/Start.png");
+        Image btnImage = new Image(imageFile.toURI().toString());
+        ImageView imageView = new ImageView(btnImage);
+         aspectRatio = btnImage.getWidth() / btnImage.getHeight();
+        imageView.setFitHeight(200 / aspectRatio);
+        imageView.setFitWidth(200);
+        startBtn.setGraphic(imageView);
+//        startBtn = new Button("", imageView);
+        startBtn.setLayoutX(250);
+        startBtn.setLayoutY(300);
+        root.getChildren().add(startBtn);
     }
 }

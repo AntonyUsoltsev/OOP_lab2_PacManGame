@@ -5,7 +5,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import nsu.usoltsev.pacmangame.Model.Matrix;
+import nsu.usoltsev.pacmangame.Model.*;
 
 public class FieldView {
     public FieldView() {

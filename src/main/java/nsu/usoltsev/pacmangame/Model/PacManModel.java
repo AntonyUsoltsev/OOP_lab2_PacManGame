@@ -4,10 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import nsu.usoltsev.pacmangame.Control.PacManController;
-import nsu.usoltsev.pacmangame.Model.Ghosts.BlueGhostModel;
-import nsu.usoltsev.pacmangame.Model.Ghosts.PinkGhostModel;
-import nsu.usoltsev.pacmangame.Model.Ghosts.RedGhostModel;
-import nsu.usoltsev.pacmangame.Model.Ghosts.YellowGhostModel;
+import nsu.usoltsev.pacmangame.Model.Ghosts.*;
 import nsu.usoltsev.pacmangame.View.PacManView;
 
 import static java.lang.Thread.sleep;
@@ -118,23 +115,26 @@ public class PacManModel {
         }
     }
 
+    boolean ghostBump(GhostModel ghostModel) {
+        return (xPosition - 1 <= ghostModel.getxPosition() && xPosition + 1 >= ghostModel.getxPosition()
+                && yPosition - 1 <= ghostModel.getyPosition() && yPosition + 1 >= ghostModel.getyPosition());
+    }
+
     public void movement(Scene scene) {
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
 
-                if ((xPosition - 1 <= blueGhostModel.getxPosition() && xPosition + 1 >= blueGhostModel.getxPosition()
-                        && yPosition - 1 <= blueGhostModel.getyPosition() && yPosition + 1 >= blueGhostModel.getyPosition()) ||
-                        (xPosition - 1 <= redGhostModel.getxPosition() && xPosition + 1 >= redGhostModel.getxPosition()
-                                && yPosition - 1 <= redGhostModel.getyPosition() && yPosition + 1 >= redGhostModel.getyPosition()) ||
-                        (xPosition - 1 <= pinkGhostModel.getxPosition() && xPosition + 1 >= pinkGhostModel.getxPosition()
-                                && yPosition - 1 <= pinkGhostModel.getyPosition() && yPosition + 1 >= pinkGhostModel.getyPosition()) ||
-                        (xPosition - 1 <= yellowGhostModel.getxPosition() && xPosition + 1 >= yellowGhostModel.getxPosition()
-                                && yPosition - 1 <= yellowGhostModel.getyPosition() && yPosition + 1 >= yellowGhostModel.getyPosition())) {
+                if (ghostBump(blueGhostModel) || ghostBump(redGhostModel) ||
+                        ghostBump(pinkGhostModel) || ghostBump(yellowGhostModel)) {
                     System.out.println("touch");
-                    keyPressed = "STOP";
+                    keyPressed = "GHOST_BUMP";
                     health--;
+                }
+
+                if (score == Matrix.MAX_SCORE) {
+                    keyPressed = "WIN";
                 }
 
                 switch (keyPressed) {
@@ -202,10 +202,10 @@ public class PacManModel {
 
                         }
                     }
-                    case ("STOP") -> {
+                    case ("GHOST_BUMP") -> {
                         xVelocity = 0;
                         yVelocity = 0;
-                        xPosition =Matrix.CELL_SIZE * Matrix.CELL_X_COUNT / 2;
+                        xPosition = Matrix.CELL_SIZE * Matrix.CELL_X_COUNT / 2;
                         yPosition = Matrix.CELL_SIZE * (Matrix.CELL_Y_COUNT / 2 + 1);
                         if (health == 0) {
                             redGhostModel.getTimer().stop();
@@ -227,7 +227,15 @@ public class PacManModel {
                             //  PacManController.control(scene);
 
                         }
+
                         //super.stop();
+                    }
+                    case("WIN")->{
+                        redGhostModel.getTimer().stop();
+                        pinkGhostModel.getTimer().stop();
+                        yellowGhostModel.getTimer().stop();
+                        blueGhostModel.getTimer().stop();
+                        super.stop();
                     }
                 }
 

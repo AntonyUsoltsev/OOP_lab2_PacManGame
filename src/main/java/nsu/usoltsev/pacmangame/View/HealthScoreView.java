@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import nsu.usoltsev.pacmangame.Model.Matrix;
+import nsu.usoltsev.pacmangame.Model.*;
 
 import java.io.File;
 
@@ -38,6 +38,11 @@ public class HealthScoreView {
         root.getChildren().add(imageView);
     }
 
+
+    public void win(){
+
+    }
+
     public static void setHealth(){
         File heartFile = new File("./src/main/resources/pictures/Heart.png");
         heartImage = new Image(heartFile.toURI().toString());
@@ -65,7 +70,6 @@ public class HealthScoreView {
 //        setHealthProperties(heart3, 120,0);
     }
     public  static  void drawHealth(int health){
-
         switch (health){
             case(2)->{
                 root.getChildren().remove(heart3);
@@ -84,6 +88,20 @@ public class HealthScoreView {
                 lose.setFont(new Font(70));
                 root.getChildren().add(lose);
             }
+        }
+    }
+
+    public static void drawScore(int score) {
+        scoreText.setText(Integer.toString(score));
+        if(score == Matrix.MAX_SCORE){
+            Text win = new Text("YOU WIN");
+            win.setFill(Color.WHITE);
+            win.setX(200);
+            win.setY(370);
+            win.setStroke(Color.YELLOW);
+            win.setStrokeWidth(5);
+            win.setFont(new Font(70));
+            root.getChildren().add(win);
         }
     }
 }

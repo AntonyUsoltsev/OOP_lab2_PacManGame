@@ -11,16 +11,18 @@ public class DotModel {
 
         for (int i = 0; i < Matrix.CELL_X_COUNT; i++) {
             for (int j = 0; j < Matrix.CELL_Y_COUNT; j++) {
-                if (Matrix.matrix[i][j] == 0) {
-                    Matrix.matrix[i][j] = 2;
+                if (Matrix.matrix[i][j] == Matrix.EMPTY) {
+                    Matrix.matrix[i][j] = Matrix.DOT;
+                    Matrix.MAX_SCORE += Matrix.DOT_SCORE;
                     dotView.appendToDotList(i, j);
                 }
             }
         }
+        System.out.println(Matrix.MAX_SCORE);
     }
 
     public static void removeDot(int xPos, int yPos) {
-        Matrix.matrix[xPos][yPos] = 0;
+        Matrix.matrix[xPos][yPos] = Matrix.EMPTY;
         dotView.removeFromDotList(xPos, yPos);
     }
 

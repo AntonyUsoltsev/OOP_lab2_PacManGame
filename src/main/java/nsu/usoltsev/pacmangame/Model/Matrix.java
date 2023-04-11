@@ -1,12 +1,18 @@
 package nsu.usoltsev.pacmangame.Model;
 
-import nsu.usoltsev.pacmangame.View.FieldView;
-
 public class Matrix {
     public static final int CELL_SIZE = 24;    //Должно быть четным.
     public static final int CELL_X_COUNT = 28; //Должно быть четным.
     public static final int CELL_Y_COUNT = 32; //Должно быть четным.
     //672*768
+    public static final int EMPTY = 0;
+    public static final int BORDER = 1;
+    public static final int DOT = 2;
+    public static final int ELSE = 3;
+    public static final int DOT_SCORE = 10;
+    public static int MAX_SCORE = 0;
+
+
     public static int[][] matrix = new int[CELL_X_COUNT][CELL_Y_COUNT];
 
     public static void setMatrix() {
@@ -14,13 +20,13 @@ public class Matrix {
             throw new IllegalArgumentException();
         }
         for (int i = 0; i < CELL_X_COUNT; i++) {
-            matrix[i][0] = 1;
-            matrix[i][CELL_Y_COUNT - 1] = 1;
+            matrix[i][0] = BORDER;
+            matrix[i][CELL_Y_COUNT - 1] = BORDER;
         }
 
         for (int i = 0; i <= 9; i++) {
-            matrix[0][i] = 1;
-            matrix[CELL_X_COUNT - 1][i] = 1;
+            matrix[0][i] = BORDER;
+            matrix[CELL_X_COUNT - 1][i] = BORDER;
         }
         for (int i = 19; i < CELL_Y_COUNT; i++) {
             matrix[0][i] = 1;
@@ -100,16 +106,16 @@ public class Matrix {
             for (int j = 24; j <= 25; j++) {
                 matrix[i][j] = 1;
             }
-            matrix[i][12]=1;
-            matrix[i][16]=1;
+            matrix[i][12] = 1;
+            matrix[i][16] = 1;
             for (int j = 13; j < 16; j++) {
                 matrix[i][j] = 3;
             }
         }
 
-        for (int j = 12; j < 16 ; j++) {
-            matrix[10][j]=1;
-            matrix[17][j]=1;
+        for (int j = 12; j < 16; j++) {
+            matrix[10][j] = 1;
+            matrix[17][j] = 1;
         }
 
         for (int i = 7; i <= 8; i++) {
