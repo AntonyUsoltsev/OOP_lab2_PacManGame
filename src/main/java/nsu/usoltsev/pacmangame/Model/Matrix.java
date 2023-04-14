@@ -4,14 +4,15 @@ public class Matrix {
     public static final int CELL_SIZE = 24;    //Должно быть четным.
     public static final int CELL_X_COUNT = 28; //Должно быть четным.
     public static final int CELL_Y_COUNT = 32; //Должно быть четным.
+
     //672*768
+
     public static final int EMPTY = 0;
     public static final int BORDER = 1;
     public static final int DOT = 2;
     public static final int ELSE = 3;
     public static final int DOT_SCORE = 10;
     public static int MAX_SCORE = 0;
-
 
     public static int[][] matrix = new int[CELL_X_COUNT][CELL_Y_COUNT];
 

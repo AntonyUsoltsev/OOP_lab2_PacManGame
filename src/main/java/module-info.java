@@ -5,4 +5,5 @@ module nsu.usoltsev.pacmangame {
 
     opens nsu.usoltsev.pacmangame to javafx.fxml;
     exports nsu.usoltsev.pacmangame;
+
 }
